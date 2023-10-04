@@ -52,7 +52,17 @@ export default {
         connected = true;
         currentUser=pb.authStore.model;
       }
-    }/*,
+    },
+    
+    async logingithub() {
+      await pb.collection("users").authWithOAuth2({ provider: "github" });
+      if (pb.authStore.isValid) {
+        document.getElementById("status").innerHTML = "You are now logged in";
+        connected = true;
+        currentUser=pb.authStore.model;
+      }
+    }
+    /*,
     async add() {
       const record = await pb.collection("poems").create({
         title: "good year",
