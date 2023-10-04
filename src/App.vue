@@ -16,13 +16,16 @@ import PocketBase from "pocketbase";
     <div class="wrapper" id="signOut">
       <div><SignIn msg="User, please sign in !" /></div>
       <label>email: </label><br />
-      <input type="email" required id="email" placeholder="username@domain.tld"
+      <input
+        type="email"
+        required
+        id="email"
+        placeholder="username@domain.tld"
       /><br />
       <label>password: </label><br />
       <input type="password" required id="passwd" /><br />
-      <button v-on:click="register()">Sign Up</button>
       <button v-on:click="login()">Sign In</button>
-      <button v-on:click="logout()">Sign out</button>
+      <button v-on:click="add()">Add</button>
       <p><label id="status"> You are not yet connected </label><br /></p>
     </div>
   </header>
@@ -31,12 +34,13 @@ import PocketBase from "pocketbase";
 </template>
 
 <script>
+var connected = false;
 var pocketbase_ip = "";
 if (import.meta.env.MODE === "production")
   pocketbase_ip = "http://193.168.146.196/";
 else pocketbase_ip = "http://193.168.146.196/";
 const pb = new PocketBase(pocketbase_ip);
-
+var currentUser;
 export default {
   methods: {
     //this method allows a new user to sign up the system. Once done, the user receives an email
