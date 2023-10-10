@@ -62,6 +62,8 @@ export default {
         currentUser=pb.authStore.model;
       }
     }
+
+    //test
     /*,
     async add() {
       const record = await pb.collection("poems").create({
